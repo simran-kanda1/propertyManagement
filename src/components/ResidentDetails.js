@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { dbService } from '../database-service';
 import './ResidentDetails.css';
+import { FaUser, FaCalendarAlt, FaExclamationTriangle, FaComments, FaUsers } from 'react-icons/fa';
+import { MdCalendarToday } from 'react-icons/md';
+import { MdChat } from 'react-icons/md';
 
 const ResidentDetails = ({ resident, userCompany, onEdit, onClose }) => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -110,12 +113,13 @@ const ResidentDetails = ({ resident, userCompany, onEdit, onClose }) => {
   };
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: '👤' },
-    { id: 'bookings', label: 'Bookings', icon: '📅', count: residentData.bookings.length },
-    { id: 'issues', label: 'Issues', icon: '⚠️', count: residentData.issues.length },
-    { id: 'messages', label: 'Messages', icon: '💬', count: residentData.messages.length },
-    { id: 'visitors', label: 'Visitors', icon: '👥', count: residentData.visitors.length }
-  ];
+  { id: 'overview', label: 'Overview', icon: <FaUser size={16} /> },
+  { id: 'bookings', label: 'Bookings', icon: <FaCalendarAlt size={16} />, count: residentData.bookings.length },
+  { id: 'issues', label: 'Issues', icon: <FaExclamationTriangle size={16} />, count: residentData.issues.length },
+  { id: 'messages', label: 'Messages', icon: <FaComments size={16} />, count: residentData.messages.length },
+  { id: 'visitors', label: 'Visitors', icon: <FaUsers size={16} />, count: residentData.visitors.length }
+];
+
 
   const renderOverviewTab = () => (
     <div className="tab-content">
@@ -250,7 +254,10 @@ const ResidentDetails = ({ resident, userCompany, onEdit, onClose }) => {
         </div>
       ) : (
         <div className="empty-tab">
-          <div className="empty-icon">📅</div>
+         <div className="empty-icon">
+  <MdCalendarToday size={32} color="#94a3b8" />
+</div>
+
           <h3>No Bookings</h3>
           <p>This resident hasn't made any bookings yet.</p>
         </div>
@@ -320,10 +327,13 @@ const ResidentDetails = ({ resident, userCompany, onEdit, onClose }) => {
         </div>
       ) : (
         <div className="empty-tab">
-          <div className="empty-icon">⚠️</div>
-          <h3>No Issues</h3>
-          <p>This resident hasn't reported any issues.</p>
-        </div>
+  <div className="empty-icon">
+    <FaExclamationTriangle size={32} color="#f59e0b" />
+  </div>
+  <h3>No Issues</h3>
+  <p>This resident hasn't reported any issues.</p>
+</div>
+
       )}
     </div>
   );
@@ -331,7 +341,10 @@ const ResidentDetails = ({ resident, userCompany, onEdit, onClose }) => {
   const renderMessagesTab = () => (
     <div className="tab-content">
       <div className="empty-tab">
-        <div className="empty-icon">💬</div>
+        <div className="empty-icon">
+  <MdChat size={32} color="#94a3b8" />
+</div>
+
         <h3>Messages Coming Soon</h3>
         <p>Message history will be available when the messaging system is implemented.</p>
         <div className="feature-preview">

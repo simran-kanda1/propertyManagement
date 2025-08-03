@@ -5,6 +5,16 @@ import { sendPasswordResetEmail, updateProfile } from 'firebase/auth';
 import { dbService } from '../database-service';
 import Layout from '../components/Layout';
 import './Settings.css';
+import { AiOutlineRobot } from 'react-icons/ai';
+import { FiLock } from 'react-icons/fi';
+import { MdCheckCircle } from 'react-icons/md';
+import { MdCancel } from 'react-icons/md';
+import { MdPhoneIphone } from 'react-icons/md';
+import { FaBuilding } from 'react-icons/fa';
+
+import { FaUser } from 'react-icons/fa';
+
+
 
 const Settings = () => {
   const [userCompany, setUserCompany] = useState(null);
@@ -347,7 +357,10 @@ const Settings = () => {
       <div className="integration-card">
         <div className="integration-header">
           <div className="integration-info">
-            <div className="integration-icon twilio">📱</div>
+            <div className="integration-icon twilio">
+  <MdPhoneIphone size={24} />
+</div>
+
             <div>
               <h4>Twilio SMS</h4>
               <p>Send SMS messages to residents</p>
@@ -422,11 +435,14 @@ const Settings = () => {
       <div className="integration-card">
         <div className="integration-header">
           <div className="integration-info">
-            <div className="integration-icon retell">🤖</div>
-            <div>
-              <h4>Retell AI</h4>
-              <p>AI-powered phone call management</p>
-            </div>
+            <div className="integration-icon retell">
+  <AiOutlineRobot size={24} />
+</div>
+<div>
+  <h4>Retell AI</h4>
+  <p>AI-powered phone call management</p>
+</div>
+
           </div>
           <label className="toggle-switch">
             <input
@@ -623,7 +639,10 @@ const Settings = () => {
           className="security-btn"
         >
           <div className="security-btn-content">
-            <div className="security-icon">🔒</div>
+            <div className="security-icon">
+  <FiLock size={20} />
+</div>
+
             <div>
               <h4>Change Password</h4>
               <p>Send a password reset link to your email</p>
@@ -742,14 +761,14 @@ const Settings = () => {
 
         {successMessage && (
           <div className="alert alert-success">
-            <span className="alert-icon">✅</span>
+            <MdCheckCircle size={20} color="green" />
             {successMessage}
           </div>
         )}
 
         {errorMessage && (
           <div className="alert alert-error">
-            <span className="alert-icon">❌</span>
+            <MdCancel size={20} color="red" />
             {errorMessage}
           </div>
         )}
@@ -760,15 +779,21 @@ const Settings = () => {
               className={`tab-btn ${activeTab === 'company' ? 'active' : ''}`}
               onClick={() => setActiveTab('company')}
             >
-              <span className="tab-icon">🏢</span>
+              <span className="tab-icon">
+  <FaBuilding size={18} />
+</span>
+
               Company Settings
             </button>
             <button
               className={`tab-btn ${activeTab === 'profile' ? 'active' : ''}`}
               onClick={() => setActiveTab('profile')}
             >
-              <span className="tab-icon">👤</span>
-              Profile & Security
+              <span className="tab-icon">
+  <FaUser size={16} />
+</span>
+Profile & Security
+
             </button>
           </div>
 

@@ -6,6 +6,11 @@ import Layout from '../components/Layout';
 import MessageComposer from '../components/MessageComposer';
 import ContactSelector from '../components/ContactSelector';
 import MessageTemplateModal from '../components/MessageTemplateModal';
+import { FaRobot } from 'react-icons/fa';
+import { FaEdit, FaBullhorn, FaRegStickyNote } from 'react-icons/fa';
+import { FiPhone, FiMessageCircle } from 'react-icons/fi';
+import { FaEnvelopeOpenText, FaCommentDots, FaPhoneAlt, FaPhoneSlash } from 'react-icons/fa';
+
 import './MessageCenter.css';
 
 const MessageCenter = () => {
@@ -308,62 +313,70 @@ const MessageCenter = () => {
 
   const renderStatsCards = () => (
     <div className="stats-cards">
-      <div className="stat-card">
-        <div className="stat-icon inbox-icon">📨</div>
-        <div className="stat-info">
-          <span className="stat-number">{stats.unreadMessages}</span>
-          <span className="stat-label">Unread</span>
-        </div>
-      </div>
-      <div className="stat-card">
-        <div className="stat-icon messages-icon">💬</div>
-        <div className="stat-info">
-          <span className="stat-number">{stats.totalMessages}</span>
-          <span className="stat-label">Total Messages</span>
-        </div>
-      </div>
-      <div className="stat-card">
-        <div className="stat-icon calls-icon">📞</div>
-        <div className="stat-info">
-          <span className="stat-number">{stats.todayCalls}</span>
-          <span className="stat-label">Today's Calls</span>
-        </div>
-      </div>
-      <div className="stat-card">
-        <div className="stat-icon missed-icon">📵</div>
-        <div className="stat-info">
-          <span className="stat-number">{stats.missedCalls}</span>
-          <span className="stat-label">Missed Calls</span>
-        </div>
-      </div>
+  <div className="stat-card">
+    <div className="stat-icon inbox-icon"><FaEnvelopeOpenText /></div>
+    <div className="stat-info">
+      <span className="stat-number">{stats.unreadMessages}</span>
+      <span className="stat-label">Unread</span>
     </div>
+  </div>
+
+  <div className="stat-card">
+    <div className="stat-icon messages-icon"><FaCommentDots /></div>
+    <div className="stat-info">
+      <span className="stat-number">{stats.totalMessages}</span>
+      <span className="stat-label">Total Messages</span>
+    </div>
+  </div>
+
+  <div className="stat-card">
+    <div className="stat-icon calls-icon"><FaPhoneAlt /></div>
+    <div className="stat-info">
+      <span className="stat-number">{stats.todayCalls}</span>
+      <span className="stat-label">Today's Calls</span>
+    </div>
+  </div>
+
+  <div className="stat-card">
+    <div className="stat-icon missed-icon"><FaPhoneSlash /></div>
+    <div className="stat-info">
+      <span className="stat-number">{stats.missedCalls}</span>
+      <span className="stat-label">Missed Calls</span>
+    </div>
+  </div>
+</div>
+
   );
 
   const renderActionButtons = () => (
-    <div className="action-buttons">
-      <button 
-        className="action-btn primary-btn"
-        onClick={handleIndividualMessage}
-      >
-        <span className="btn-icon">✏️</span>
-        New Message
-      </button>
-      <button 
-        className="action-btn secondary-btn"
-        onClick={handleMassMessage}
-      >
-        <span className="btn-icon">📢</span>
-        Mass Message
-      </button>
-      <button 
-        className="action-btn secondary-btn"
-        onClick={() => setShowTemplateModal(true)}
-      >
-        <span className="btn-icon">📝</span>
-        Templates
-      </button>
-    </div>
-  );
+  <div className="action-buttons">
+  <button 
+    className="action-btn primary-btn tooltip"
+    onClick={handleIndividualMessage}
+  >
+    <span className="btn-icon"><FaEdit /></span>
+    <span className="tooltip-text">New Message</span>
+  </button>
+
+  <button 
+    className="action-btn secondary-btn tooltip"
+    onClick={handleMassMessage}
+  >
+    <span className="btn-icon"><FaBullhorn /></span>
+    <span className="tooltip-text">Mass Message</span>
+  </button>
+
+  <button 
+    className="action-btn secondary-btn tooltip"
+    onClick={() => setShowTemplateModal(true)}
+  >
+    <span className="btn-icon"><FaRegStickyNote /></span>
+    <span className="tooltip-text">Templates</span>
+  </button>
+</div>
+
+);
+
 
   const renderFilters = () => (
     <div className="filters-section">
@@ -456,8 +469,8 @@ const MessageCenter = () => {
               <div className="message-header">
                 <div className="contact-info">
                   <div className="contact-avatar">
-                    {isCall ? '📞' : '💬'}
-                  </div>
+  {isCall ? <FiPhone /> : <FiMessageCircle />}
+</div>
                   <div className="contact-details">
                     <h4 className="contact-name">
                       {resident ? `${resident.name} - Unit ${resident.unitNumber}` : item.phoneNumber}
@@ -484,14 +497,20 @@ const MessageCenter = () => {
                       {item.summary || `${item.status} call - ${item.duration || 'N/A'}`}
                     </p>
                     {item.aiSummary && (
-                      <p className="ai-summary">🤖 {item.aiSummary}</p>
+                      <p className="ai-summary">
+  <FaRobot style={{ marginRight: '6px' }} />
+  {item.aiSummary}
+</p>
                     )}
                   </div>
                 ) : (
                   <div className="message-details">
                     <p className="message-text">{item.content}</p>
                     {item.aiSummary && (
-                      <p className="ai-summary">🤖 {item.aiSummary}</p>
+                      <p className="ai-summary">
+  <FaRobot style={{ marginRight: '6px' }} />
+  {item.aiSummary}
+</p>
                     )}
                   </div>
                 )}

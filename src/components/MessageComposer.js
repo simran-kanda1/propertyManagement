@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import ContactSelector from './ContactSelector';
 import './MessageComposer.css';
+import { FaClipboard } from 'react-icons/fa';
+import { FiSend } from 'react-icons/fi';
+
 
 const MessageComposer = ({ 
   isOpen, 
@@ -165,9 +168,11 @@ const MessageComposer = ({
 
           {/* Recipient Info Display */}
           <div className="recipient-info">
-            <span className="info-icon">📋</span>
-            <span className="info-text">{getRecipientInfo()}</span>
-          </div>
+  <span className="info-icon">
+    <FaClipboard size={16} />
+  </span>
+  <span className="info-text">{getRecipientInfo()}</span>
+</div>
 
           {/* Message Templates */}
           <div className="templates-section">
@@ -234,7 +239,10 @@ const MessageComposer = ({
                 </>
               ) : (
                 <>
-                  <span className="send-icon">📤</span>
+                  <span className="send-icon">
+  <FiSend size={16} />
+</span>
+
                   {type === 'mass' ? `Send to ${residents.length} residents` : 'Send Message'}
                 </>
               )}

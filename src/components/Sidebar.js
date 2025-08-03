@@ -6,6 +6,7 @@ import { dbService } from '../database-service';
 import BookingForm from './BookingForm';
 import MessageComposer from './MessageComposer';
 import './Sidebar.css';
+import { FaCalendarPlus, FaEnvelopeOpenText } from 'react-icons/fa';
 
 const Sidebar = ({ isOpen, onClose, userCompany }) => {
   const location = useLocation();
@@ -280,30 +281,32 @@ const Sidebar = ({ isOpen, onClose, userCompany }) => {
 
           {/* Quick Actions */}
           <div className="nav-section">
-            <h3 className="nav-section-title">Quick Actions</h3>
-            <div className="quick-actions">
-                <button 
-                className="quick-action-btn primary"
-                onClick={handleQuickBooking}
-                >
-                <svg viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-                    <line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                New Booking
-                </button>
-                <button 
-                className="quick-action-btn secondary"
-                onClick={handleQuickMessage}
-                >
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Send Message
-                </button>
-            </div>
-            </div>
+  <h3 className="nav-section-title">Quick Actions</h3>
+  <div className="quick-actions">
+
+    <button 
+      className="quick-action-btn primary"
+      onClick={handleQuickBooking}
+    >
+      <div className="icon-tooltip">
+        <FaCalendarPlus className="icon" />
+        <span className="tooltip-text">New Booking</span>
+      </div>
+    </button>
+
+    <button 
+      className="quick-action-btn secondary"
+      onClick={handleQuickMessage}
+    >
+      <div className="icon-tooltip">
+        <FaEnvelopeOpenText className="icon" />
+        <span className="tooltip-text">Send Message</span>
+      </div>
+    </button>
+
+  </div>
+</div>
+
         </nav>
 
         {/* Sidebar Footer */}

@@ -1,6 +1,8 @@
 // components/MessageTemplateModal.js
 import React, { useState } from 'react';
 import './MessageTemplateModal.css';
+import { MdNoteAdd } from 'react-icons/md';
+
 
 const MessageTemplateModal = ({ isOpen, onClose, onSelectTemplate }) => {
   const [activeTab, setActiveTab] = useState('predefined');
@@ -266,10 +268,13 @@ const MessageTemplateModal = ({ isOpen, onClose, onSelectTemplate }) => {
 
       {customTemplates.length === 0 ? (
         <div className="empty-custom-templates">
-          <div className="empty-icon">📝</div>
-          <h4>No Custom Templates</h4>
-          <p>Create your own templates for frequently used messages.</p>
-        </div>
+  <div className="empty-icon">
+    <MdNoteAdd size={32} color="#94a3b8" />
+  </div>
+  <h4>No Custom Templates</h4>
+  <p>Create your own templates for frequently used messages.</p>
+</div>
+
       ) : (
         <div className="templates-grid">
           {customTemplates.map((template) => (

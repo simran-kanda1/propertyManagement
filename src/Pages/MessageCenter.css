@@ -151,7 +151,7 @@
   
   .search-input {
     width: 100%;
-    padding: 12px 40px 12px 16px;
+    padding: 12px 40px 12px 30px;
     border: 2px solid #e5e7eb;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -257,3 +257,35 @@
   .message-item:hover, .call-item:hover {
     background: #f8fafc
   }
+
+
+  .tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #374151;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Show above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+  font-size: 0.75rem;
+  pointer-events: none;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

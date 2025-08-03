@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import PackageForm from '../components/PackageForm';
 import NotificationForm from '../components/NotificationForm';
 import './PackageCenter.css';
+import { FaBox, FaHourglassHalf, FaCheckCircle, FaMobileAlt } from 'react-icons/fa';
 
 const PackageCenter = () => {
   const [userCompany, setUserCompany] = useState(null);
@@ -363,35 +364,47 @@ const PackageCenter = () => {
 
         {/* Stats Cards */}
         <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-icon total">📦</div>
-            <div className="stat-content">
-              <h3>{stats.total}</h3>
-              <p>Total Packages</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon pending">⏳</div>
-            <div className="stat-content">
-              <h3>{stats.pending}</h3>
-              <p>Pending Pickup</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon picked-up">✅</div>
-            <div className="stat-content">
-              <h3>{stats.pickedUp}</h3>
-              <p>Picked Up</p>
-            </div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-icon notified">📱</div>
-            <div className="stat-content">
-              <h3>{stats.notified}</h3>
-              <p>Notified</p>
-            </div>
-          </div>
-        </div>
+  <div className="stat-card">
+    <div className="stat-icon total" title="Total Packages">
+      <FaBox />
+    </div>
+    <div className="stat-content">
+      <h3>{stats.total}</h3>
+      <p>Total Packages</p>
+    </div>
+  </div>
+  
+  <div className="stat-card">
+    <div className="stat-icon pending" title="Pending Pickup">
+      <FaHourglassHalf />
+    </div>
+    <div className="stat-content">
+      <h3>{stats.pending}</h3>
+      <p>Pending Pickup</p>
+    </div>
+  </div>
+
+  <div className="stat-card">
+    <div className="stat-icon picked-up" title="Picked Up">
+      <FaCheckCircle />
+    </div>
+    <div className="stat-content">
+      <h3>{stats.pickedUp}</h3>
+      <p>Picked Up</p>
+    </div>
+  </div>
+
+  <div className="stat-card">
+    <div className="stat-icon notified" title="Notified">
+      <FaMobileAlt />
+    </div>
+    <div className="stat-content">
+      <h3>{stats.notified}</h3>
+      <p>Notified</p>
+    </div>
+  </div>
+</div>
+
 
         {/* Filters and Search */}
         <div className="filters-section">

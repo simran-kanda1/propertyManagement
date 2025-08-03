@@ -7,6 +7,14 @@ import { dbService } from '../database-service';
 import BookingForm from './BookingForm';
 import MessageComposer from './MessageComposer';
 import './header.css';
+import { MdWarning, MdCalendarToday, MdChat, MdNotifications } from 'react-icons/md';
+import { FaBox } from 'react-icons/fa';
+import { FiLock } from 'react-icons/fi';
+import { FiLogOut } from 'react-icons/fi';
+
+
+import { FaEdit, FaCog } from 'react-icons/fa';
+
 
 const Header = ({ currentPageName, onMenuToggle, userCompany }) => {
   const navigate = useNavigate();
@@ -238,13 +246,18 @@ const Header = ({ currentPageName, onMenuToggle, userCompany }) => {
   };
 
   const getNotificationIcon = (type) => {
-    switch (type) {
-      case 'issue': return '⚠️';
-      case 'booking': return '📅';
-      case 'message': return '💬';
-      case 'package': return '📦';
-      default: return '🔔';
-    }
+     switch (type) {
+    case 'issue':
+      return <MdWarning size={18} color="#f59e0b" />;
+    case 'booking':
+      return <MdCalendarToday size={18} color="#3b82f6" />;
+    case 'message':
+      return <MdChat size={18} color="#10b981" />;
+    case 'package':
+      return <FaBox size={18} color="#8b5cf6" />;
+    default:
+      return <MdNotifications size={18} color="#6b7280" />;
+  }
   };
 
   return (
@@ -360,16 +373,24 @@ const Header = ({ currentPageName, onMenuToggle, userCompany }) => {
                 <div className="dropdown-section">
                   <h5>Quick Actions</h5>
                   <button className="dropdown-item" onClick={handleQuickBooking}>
-                    <span className="item-icon">📅</span>
-                    <span>New Booking</span>
-                  </button>
-                  <button className="dropdown-item" onClick={handleQuickMessage}>
-                    <span className="item-icon">💬</span>
-                    <span>Send Message</span>
-                  </button>
-                  <button className="dropdown-item" onClick={() => navigate('/packages')}>
-                    <span className="item-icon">📦</span>
-                    <span>Log Package</span>
+                    <span className="item-icon">
+    <MdCalendarToday size={18} />
+  </span>
+  <span>New Booking</span>
+</button>
+
+<button className="dropdown-item" onClick={handleQuickMessage}>
+  <span className="item-icon">
+    <MdChat size={18} />
+  </span>
+  <span>Send Message</span>
+</button>
+
+<button className="dropdown-item" onClick={() => navigate('/packages')}>
+  <span className="item-icon">
+    <FaBox size={18} />
+  </span>
+  <span>Log Package</span>
                   </button>
                 </div>
 
@@ -382,21 +403,29 @@ const Header = ({ currentPageName, onMenuToggle, userCompany }) => {
                       setShowUserMenu(false);
                     }}
                   >
-                    <span className="item-icon">✏️</span>
-                    <span>Edit Profile</span>
-                  </button>
-                  <button className="dropdown-item" onClick={() => navigate('/settings')}>
-                    <span className="item-icon">⚙️</span>
-                    <span>Settings</span>
+                    <span className="item-icon">
+    <FaEdit size={16} />
+  </span>
+  <span>Edit Profile</span>
+</button>
+
+<button className="dropdown-item" onClick={() => navigate('/settings')}>
+  <span className="item-icon">
+    <FaCog size={16} />
+  </span>
+  <span>Settings</span>
                   </button>
                 </div>
 
                 <div className="dropdown-divider"></div>
                 
                 <button className="dropdown-item logout" onClick={handleLogout}>
-                  <span className="item-icon">🚪</span>
-                  <span>Sign Out</span>
-                </button>
+  <span className="item-icon">
+    <FiLogOut size={16} />
+  </span>
+  <span>Sign Out</span>
+</button>
+
               </div>
             )}
           </div>
@@ -455,7 +484,10 @@ const Header = ({ currentPageName, onMenuToggle, userCompany }) => {
                   onClick={handlePasswordReset}
                   className="password-reset-btn"
                 >
-                  <span className="btn-icon">🔒</span>
+                  <span className="btn-icon">
+  <FiLock size={16} />
+</span>
+
                   Send Password Reset Email
                 </button>
               </div>
